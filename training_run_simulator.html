@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Training Run Simulator</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&amp;family=Inter:wght@300;400;600&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
+        rel="stylesheet">
+
+    <!-- Tone.js for Audio Feedback -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            /* Global North */
+            --neon-red: #ff3333;
+            /* China */
+            --neon-gold: #ffd700;
+            /* India */
+            --neon-purple: #bc13fe;
+            /* Europe */
+            --alert-orange: #ff5e00;
+            /* Global South */
+            --deep-bg: #050505;
+            --card-bg: #111111;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--deep-bg);
+            color: #e0e0e0;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        .stat-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-cyan-500 selection:text-black">
+
+    <!-- Section: Interactive Simulation -->
+    <section
+        class="min-h-screen py-24 bg-gradient-to-b from-[#0a0a0a] to-[#050505] relative overflow-hidden flex items-center"
+        id="simulator-section">
+        <div class="absolute inset-0 opacity-10"
+            style="background-image: radial-gradient(#333 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+        <div class="max-w-6xl mx-auto px-4 relative z-10 w-full">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Training Run <span
+                        class="text-pink-500">Simulator</span></h2>
+                <p class="text-gray-400">Simulating time-to-train based on regional hardware availability.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Main Simulator -->
+                <div class="lg:col-span-2 glass-panel rounded-3xl p-6 md:p-10 border border-white/10 shadow-2xl">
+                    <!-- Controls -->
+                    <div
+                        class="flex flex-col md:flex-row gap-6 mb-10 items-center justify-between border-b border-gray-800 pb-8">
+                        <div class="w-full md:w-1/2">
+                            <label class="block text-gray-400 text-xs uppercase tracking-wider mb-2">Select Model
+                                Complexity</label>
+                            <select
+                                class="w-full bg-[#1a1a1a] border border-gray-700 text-white rounded-lg p-3 focus:outline-none focus:border-pink-500 transition-colors"
+                                id="model-select">
+                                <option value="1">Startup MVP (Fine-tuning)</option>
+                                <option value="50">Academic Research Model</option>
+                                <option value="500">Foundation Model (GPT-Scale)</option>
+                            </select>
+                        </div>
+                        <div class="text-center">
+                            <button
+                                class="bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold py-3 px-10 rounded-full hover:scale-105 transition-transform shadow-[0_0_20px_rgba(236,72,153,0.5)] flex items-center gap-2 mx-auto"
+                                id="run-sim-btn">
+                                <span class="material-symbols-outlined">play_arrow</span> Start Race
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Race Tracks -->
+                    <div class="space-y-6">
+                        <!-- North Track -->
+                        <div class="relative">
+                            <div class="flex justify-between items-end mb-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-cyan-400 text-xl">cloud_done</span>
+                                    <div class="text-xs md:text-sm font-bold text-white w-24">Global North</div>
+                                </div>
+                                <div class="font-mono text-cyan-400 text-xs md:text-sm" id="north-time">0 days</div>
+                            </div>
+                            <div class="w-full h-3 bg-gray-800 rounded-full overflow-hidden relative">
+                                <div class="h-full bg-cyan-400 shadow-[0_0_15px_#00f3ff] w-0" id="north-bar"></div>
+                            </div>
+                        </div>
+
+                        <!-- China Track -->
+                        <div class="relative">
+                            <div class="flex justify-between items-end mb-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-red-500 text-xl">memory</span>
+                                    <div class="text-xs md:text-sm font-bold text-white w-24">China</div>
+                                </div>
+                                <div class="font-mono text-red-500 text-xs md:text-sm" id="china-time">0 days</div>
+                            </div>
+                            <div class="w-full h-3 bg-gray-800 rounded-full overflow-hidden relative">
+                                <div class="h-full bg-red-500 shadow-[0_0_15px_#ff3333] w-0" id="china-bar"></div>
+                            </div>
+                        </div>
+
+                        <!-- India Track -->
+                        <div class="relative">
+                            <div class="flex justify-between items-end mb-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-yellow-400 text-xl">trending_up</span>
+                                    <div class="text-xs md:text-sm font-bold text-white w-24">India</div>
+                                </div>
+                                <div class="font-mono text-yellow-400 text-xs md:text-sm" id="india-time">0 days</div>
+                            </div>
+                            <div class="w-full h-3 bg-gray-800 rounded-full overflow-hidden relative">
+                                <div class="h-full bg-yellow-400 shadow-[0_0_15px_#ffd700] w-0" id="india-bar"></div>
+                            </div>
+                        </div>
+
+                        <!-- South Track -->
+                        <div class="relative">
+                            <div class="flex justify-between items-end mb-2">
+                                <div class="flex items-center gap-2">
+                                    <span
+                                        class="material-symbols-outlined text-orange-500 text-xl">hourglass_empty</span>
+                                    <div class="text-xs md:text-sm font-bold text-white w-24">Global South</div>
+                                </div>
+                                <div class="font-mono text-orange-500 text-xs md:text-sm" id="south-time">0 days</div>
+                            </div>
+                            <div class="w-full h-3 bg-gray-800 rounded-full overflow-hidden relative">
+                                <div class="h-full bg-orange-500 shadow-[0_0_15px_#ff5e00] w-0" id="south-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Result Message -->
+                    <div class="mt-8 text-center hidden animate-fade-in-up" id="sim-result">
+                        <div class="inline-block bg-gray-900 border border-gray-700 p-6 rounded-xl">
+                            <h4 class="text-xl font-bold mb-2">The Innovation Gap</h4>
+                            <p class="text-gray-300 text-sm" id="lag-text"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Methodology / Assumptions Panel -->
+                <div
+                    class="lg:col-span-1 glass-panel rounded-3xl p-6 border border-white/10 flex flex-col justify-center">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2 text-pink-400">
+                        <span class="material-symbols-outlined">analytics</span> How This Works
+                    </h3>
+                    <div class="space-y-4 text-xs text-gray-400">
+                        <p>
+                            This simulation uses a <strong>Time-to-Train</strong> proxy derived from regional hardware
+                            constraints.
+                        </p>
+                        <div class="p-3 bg-black/40 rounded-lg border border-gray-800">
+                            <strong class="text-white block mb-1">Global North (Baseline)</strong>
+                            Assumes unrestricted access to H100/H200 clusters and massive energy grids.
+                        </div>
+                        <div class="p-3 bg-black/40 rounded-lg border border-gray-800">
+                            <strong class="text-red-400 block mb-1">China</strong>
+                            <span class="italic">Penalty Factor: 1.5x - 2.0x</span><br>
+                            Despite high capacity, export controls force the use of less efficient chips (e.g., H20 or
+                            domestic alternatives), increasing training time.
+                        </div>
+                        <div class="p-3 bg-black/40 rounded-lg border border-gray-800">
+                            <strong class="text-yellow-400 block mb-1">India</strong>
+                            <span class="italic">Penalty Factor: 3.5x - 4.0x</span><br>
+                            Rapid growth, but total FLOPs capacity is significantly lower than China/USA. Heavily
+                            reliant on cloud imports with queue latency.
+                        </div>
+                        <div class="p-3 bg-black/40 rounded-lg border border-gray-800">
+                            <strong class="text-orange-500 block mb-1">Global South</strong>
+                            <span class="italic">Penalty Factor: &gt;15x</span><br>
+                            Severe lack of local data centers. Training relies on high-latency, expensive cross-border
+                            cloud access or older hardware.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // --- Simulation Logic ---
+        document.getElementById('run-sim-btn').addEventListener('click', runSimulation);
+
+        function runSimulation() {
+            const complexity = parseInt(document.getElementById('model-select').value);
+
+            const bars = {
+                north: document.getElementById('north-bar'),
+                china: document.getElementById('china-bar'),
+                india: document.getElementById('india-bar'),
+                south: document.getElementById('south-bar')
+            };
+
+            const times = {
+                north: document.getElementById('north-time'),
+                china: document.getElementById('china-time'),
+                india: document.getElementById('india-time'),
+                south: document.getElementById('south-time')
+            };
+
+            const resultDiv = document.getElementById('sim-result');
+            const lagText = document.getElementById('lag-text');
+            const btn = document.getElementById('run-sim-btn');
+
+            // Reset
+            Object.values(bars).forEach(b => { b.style.transition = 'none'; b.style.width = '0%'; });
+            resultDiv.classList.add('hidden');
+            btn.disabled = true;
+            btn.classList.add('opacity-50');
+
+            // Initialize Tone.js only on user interaction if not already ready
+            if (Tone.context.state !== 'running') {
+                Tone.start();
+            }
+
+            const synth = new Tone.Synth().toDestination();
+            try {
+                synth.triggerAttackRelease("C5", "0.1");
+            } catch (e) {
+                console.log("Audio context not ready or blocked");
+            }
+
+            // --- Speed Logic (ms) ---
+            const baseSpeed = 2000; // North baseline
+            const speeds = {
+                north: baseSpeed,
+                china: baseSpeed * 1.8,  // Lag due to restrictions
+                india: baseSpeed * 3.5,  // Lag due to capacity/infra
+                south: baseSpeed * 15    // Massive lag
+            };
+
+            // --- Labels ---
+            let labels = {};
+            if (complexity === 1) {
+                labels = { north: "2 Hours", china: "4 Hours", india: "9 Hours", south: "5 Days" };
+            } else if (complexity === 50) {
+                labels = { north: "4 Days", china: "1 Week", india: "2.5 Weeks", south: "9 Months" };
+            } else {
+                labels = { north: "2 Months", china: "5 Months", india: "1 Year", south: "14 Years" };
+            }
+
+            setTimeout(() => {
+                // Trigger Animations
+                Object.keys(bars).forEach(key => {
+                    const width = key === 'south' ? '20%' : '100%'; // South stalls
+                    bars[key].style.transition = `width ${speeds[key]}ms linear`;
+                    bars[key].style.width = width;
+                });
+
+                // Completion Handlers
+                // 1. North
+                setTimeout(() => {
+                    times.north.innerText = `Done (${labels.north})`;
+                    if (Tone.context.state === 'running') synth.triggerAttackRelease("G5", "0.1");
+                }, speeds.north);
+
+                // 2. China
+                setTimeout(() => {
+                    times.china.innerText = `Done (${labels.china})`;
+                    if (Tone.context.state === 'running') synth.triggerAttackRelease("E5", "0.1");
+                }, speeds.china);
+
+                // 3. India
+                setTimeout(() => {
+                    times.india.innerText = `Done (${labels.india})`;
+                    if (Tone.context.state === 'running') synth.triggerAttackRelease("C5", "0.1");
+
+                    // Show Result (Waiting for India to finish before showing summary is a good UX pacing)
+                    resultDiv.classList.remove('hidden');
+                    lagText.innerHTML = `
+                        <div class="grid grid-cols-2 gap-4 text-left mb-4">
+                            <div><span class="text-cyan-400">North:</span> ${labels.north}</div>
+                            <div><span class="text-red-500">China:</span> ${labels.china}</div>
+                            <div><span class="text-yellow-400">India:</span> ${labels.india}</div>
+                            <div><span class="text-orange-500">South:</span> ${labels.south}</div>
+                        </div>
+                        The simulation highlights how <strong>Export Controls</strong> (China) and <strong>Infrastructure Capacity</strong> (India) create distinct tiers of delay compared to the Global North.
+                    `;
+
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-50');
+                }, speeds.india);
+
+                // 4. South (Stalls)
+                times.south.innerText = "Queued...";
+
+            }, 100);
+        }
+    </script>
+</body>
+
+</html>
