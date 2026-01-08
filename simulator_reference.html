@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reference Note: Global AI Compute Disparity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #e0e0e0;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+
+<body class="py-12 px-4 md:px-0">
+    <div class="max-w-4xl mx-auto">
+        <header class="mb-12 border-b border-gray-800 pb-8 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Reference Note: <span class="text-cyan-400">Global AI
+                    Compute Disparity</span></h1>
+            <p class="text-gray-400">Technical Assumptions and Data Sources for the Training Run Simulator (2025-2026)
+            </p>
+        </header>
+
+        <div class="space-y-10">
+            <section class="glass-panel p-6 rounded-2xl">
+                <h2 class="text-xl font-bold text-cyan-400 mb-4 flex items-center gap-2">
+                    Global North (The Performance Baseline)
+                </h2>
+                <ul class="space-y-3 text-sm text-gray-300">
+                    <li>• The U.S. and its Tier 1 partners host the vast majority of global AI compute capacity and
+                        leading AI firms.</li>
+                    <li>• The Global North serves as the reference point for unrestricted access to "Tier 1" AI
+                        infrastructure.</li>
+                    <li>• U.S. private AI investment reached $109.1 billion in 2024—nearly 12 times China's and 24 times
+                        the U.K.'s.</li>
+                    <li>• Organizations in this region have immediate access to the NVIDIA H200, which offers 1.4x to
+                        1.9x performance leaps in memory-intensive training and inference.</li>
+                </ul>
+            </section>
+
+            <section class="glass-panel p-6 rounded-2xl border-l-4 border-l-red-500">
+                <h2 class="text-xl font-bold text-red-500 mb-4">China (The Export Control Penalty)</h2>
+                <ul class="space-y-3 text-sm text-gray-300">
+                    <li>• To comply with U.S. export controls, hardware like the NVIDIA H20 is used, which is
+                        significantly slower for training large models than standard H100/H200 clusters.</li>
+                    <li>• Chinese models currently lag behind U.S. counterparts by an average of 7 months due to
+                        hardware performance degradation forced by trade restrictions.</li>
+                    <li>• While China leads in total data center clusters (230), its effective AI compute power is
+                        limited by performance constraints on individual chips.</li>
+                </ul>
+            </section>
+
+            <section class="glass-panel p-6 rounded-2xl border-l-4 border-l-yellow-400">
+                <h2 class="text-xl font-bold text-yellow-400 mb-4">India (The Infrastructure Capacity Gap)</h2>
+                <ul class="space-y-3 text-sm text-gray-300">
+                    <li>• India holds roughly 1.2 million H100 equivalents, compared to the U.S.'s 39.7 million—a nearly
+                        33-fold difference.</li>
+                    <li>• India hosts nearly 20% of the world’s data but possesses only 3% of global data center
+                        capacity, leading to "queue latency".</li>
+                    <li>• The IndiaAI Mission has successfully scaled domestic capacity to 38,000 GPUs to provide
+                        affordable, subsidized access for startups.</li>
+                </ul>
+            </section>
+
+            <section class="glass-panel p-6 rounded-2xl border-l-4 border-l-orange-500">
+                <h2 class="text-xl font-bold text-orange-500 mb-4">Global South (The Infrastructure Stall)</h2>
+                <ul class="space-y-3 text-sm text-gray-300">
+                    <li>• High-income countries host 77% of global data center capacity, while low-income countries hold
+                        less than 0.1%.</li>
+                    <li>• Only one-quarter of the population in sub-Saharan Africa has access to reliable internet, a
+                        prerequisite for cloud-based AI training.</li>
+                    <li>• Scaling AI requires a robust digital backbone that fewer than 10% of organizations in these
+                        markets can currently afford.</li>
+                </ul>
+            </section>
+
+            <section class="mt-12">
+                <h3 class="text-lg font-bold mb-6 text-center">Regional Benchmarks & Reference Links</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-gray-700 text-gray-400">
+                                <th class="py-3 px-4">Region</th>
+                                <th class="py-3 px-4">Key Metric (2025)</th>
+                                <th class="py-3 px-4">Data Source</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-300">
+                            <tr class="border-b border-gray-800">
+                                <td class="py-4 px-4 font-bold">Global North</td>
+                                <td class="py-4 px-4">$109.1B Private AI Investment</td>
+                                <td class="py-4 px-4"><a href="https://hai.stanford.edu/ai-index/2025-ai-index-report"
+                                        class="text-cyan-400 underline italic">Stanford HAI AI Index</a></td>
+                            </tr>
+                            <tr class="border-b border-gray-800">
+                                <td class="py-4 px-4 font-bold text-red-500">China</td>
+                                <td class="py-4 px-4">400K H100 Equivalents</td>
+                                <td class="py-4 px-4"><a
+                                        href="https://www.trgdatacenters.com/resource/the-worlds-top-ai-superpowers-in-2025/"
+                                        class="text-cyan-400 underline italic">TRG Superpowers Report</a></td>
+                            </tr>
+                            <tr class="border-b border-gray-800">
+                                <td class="py-4 px-4 font-bold text-yellow-400">India</td>
+                                <td class="py-4 px-4">38,000 GPUs (Subsidized)</td>
+                                <td class="py-4 px-4"><a href="https://www.pib.gov.in/PressNoteDetails.aspx?id=156786"
+                                        class="text-cyan-400 underline italic">IndiaAI Mission (PIB)</a></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-4 font-bold text-orange-500">Global South</td>
+                                <td class="py-4 px-4">&lt;0.1% Data Center Share</td>
+                                <td class="py-4 px-4"><a
+                                        href="https://www.worldbank.org/en/news/factsheet/2025/11/21/strengthening-ai-foundations-emerging-opportunities-for-developing-countries"
+                                        class="text-cyan-400 underline italic">World Bank Digital Factsheet</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <footer class="mt-16 pt-8 border-t border-gray-800 text-center text-xs text-gray-500">
+            <p>This note is provided for educational purposes during AI policy workshops. All data points are sourced
+                from public 2025–2026 reports.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
