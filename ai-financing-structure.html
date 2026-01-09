@@ -945,11 +945,7 @@
             <p class="text-xs text-slate-400">Global funding flows for AI capacity building</p>
         </div>
         <div class="hidden md:flex gap-3">
-            <button
-                class="flex items-center gap-2 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-sm font-medium transition-colors border border-slate-700"
-                onclick="resetView()">
-                <span class="material-symbols-outlined text-lg">refresh</span> Reset View
-            </button>
+
             <button
                 class="flex items-center gap-2 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors shadow-sm"
                 onclick="downloadCode()">
@@ -958,7 +954,8 @@
         </div>
     </header>
     <!-- Main Content -->
-    <main class="flex-1 flex flex-col lg:flex-row overflow-hidden relative">
+    <main class="flex-1 flex flex-col overflow-hidden relative">
+
         <!-- Chart Area -->
         <div
             class="flex-1 relative bg-black m-2 md:m-4 rounded-xl shadow-sm border border-slate-800 flex flex-col overflow-hidden">
@@ -1160,25 +1157,7 @@
                     </g>
                 </svg></div>
         </div>
-        <!-- Details Panel -->
-        <aside
-            class="w-full lg:w-96 bg-slate-900 border-l border-slate-800 shadow-[0_0_15px_rgba(0,0,0,0.3)] flex flex-col z-20 transition-transform duration-300">
-            <div class="p-4 border-b border-slate-800 bg-slate-900 shrink-0">
-                <h2 class="text-lg font-bold text-white flex items-center gap-2" id="detail-title">
-                    <span class="material-symbols-outlined text-slate-400">info</span>
-                    Flow Details
-                </h2>
-                <div class="hidden mt-2 inline-block px-2 py-1 text-xs font-semibold rounded uppercase tracking-wide"
-                    id="detail-tag"></div>
-            </div>
-            <div class="p-4 overflow-y-auto flex-1 space-y-6" id="detail-content">
-                <div class="text-center text-slate-600 mt-10">
-                    <span class="material-symbols-outlined text-5xl mb-3 text-slate-700">hub</span>
-                    <p class="text-sm">Hover over nodes to see connected flows.<br>Click a node or connection to view
-                        details.</p>
-                </div>
-            </div>
-        </aside>
+
     </main>
     <script>
         // --- Data Definitions ---
@@ -1338,7 +1317,7 @@
                 .attr("d", d3.sankeyLinkHorizontal())
                 .attr("stroke-width", d => Math.max(1, d.width))
                 .attr("stroke", d => d.source.color)
-                .on("click", (e, d) => showLinkDetail(d))
+
                 .on("mouseenter", function (e, d) {
                     // Dim all nodes and links
                     d3.selectAll(".node").classed("dimmed", true);
@@ -1361,7 +1340,7 @@
                 .data(graph.nodes)
                 .enter().append("g")
                 .attr("class", "node")
-                .on("click", (e, d) => showNodeDetail(d))
+
                 .on("mouseenter", function (e, d) {
                     // Dim everything
                     d3.selectAll(".node").classed("dimmed", true);
@@ -1449,96 +1428,7 @@
                 .classed("dimmed", false);
         }
 
-        function resetView() {
-            resetDim();
-            document.getElementById('detail-title').innerHTML = '<span class="material-symbols-outlined text-slate-400">info</span> Flow Details';
-            document.getElementById('detail-tag').classList.add('hidden');
-            document.getElementById('detail-content').innerHTML = `
-            <div class="text-center text-slate-600 mt-10">
-                <span class="material-symbols-outlined text-5xl mb-3 text-slate-700">hub</span>
-                <p class="text-sm">Hover over nodes to see connected flows.<br/>Click a node or connection to view details.</p>
-            </div>
-        `;
-        }
 
-        function showNodeDetail(d) {
-            const title = document.getElementById('detail-title');
-            const tag = document.getElementById('detail-tag');
-            const content = document.getElementById('detail-content');
-
-            title.innerText = d.name;
-            tag.innerText = d.type;
-            tag.className = `inline-block px-2 py-1 text-xs font-bold rounded uppercase tracking-wide mb-2 ${d.type === 'source' ? 'bg-green-900/30 text-green-400 border border-green-900' :
-                d.type === 'instrument' ? 'bg-orange-900/30 text-orange-400 border border-orange-900' :
-                    'bg-blue-900/30 text-blue-400 border border-blue-900'
-                }`;
-            tag.classList.remove('hidden');
-
-            let html = '';
-            if (d.type === 'recipient' && nodeDetails[d.name]) {
-                const info = nodeDetails[d.name];
-                html = `
-                <div class="space-y-4 animate-fade-in">
-                    <div class="p-4 bg-slate-800 border border-slate-700 rounded-lg">
-                        <h4 class="text-xs font-bold text-slate-400 uppercase mb-2">Definition</h4>
-                        <p class="text-sm text-slate-300 leading-relaxed font-medium">${info.desc}</p>
-                    </div>
-                    <div class="p-4 bg-blue-900/20 border border-blue-800/50 rounded-lg">
-                        <h4 class="text-xs font-bold text-blue-400 uppercase mb-2">Funding Strategy</h4>
-                        <p class="text-sm text-blue-200 leading-relaxed">${info.funding}</p>
-                    </div>
-                </div>
-            `;
-            } else {
-                const incoming = d.targetLinks.map(l => l.source.name);
-                const outgoing = d.sourceLinks.map(l => l.target.name);
-
-                html = `<div class="space-y-6">`;
-                if (incoming.length) {
-                    html += `
-                    <div>
-                        <h4 class="text-xs font-bold text-slate-500 uppercase mb-3">Received From</h4>
-                        <div class="flex flex-wrap gap-2">
-                            ${incoming.map(n => `<span class="px-2 py-1.5 bg-slate-800 text-slate-300 rounded text-xs border border-slate-700 font-medium">${n}</span>`).join('')}
-                        </div>
-                    </div>`;
-                }
-                if (outgoing.length) {
-                    html += `
-                    <div>
-                        <h4 class="text-xs font-bold text-slate-500 uppercase mb-3">Contributes To</h4>
-                        <ul class="space-y-2">
-                            ${outgoing.map(n => `<li class="flex items-center gap-2 text-sm text-slate-300 font-medium"><span class="material-symbols-outlined text-sm text-slate-500">arrow_forward</span>${n}</li>`).join('')}
-                        </ul>
-                    </div>`;
-                }
-                html += `</div>`;
-            }
-            content.innerHTML = html;
-        }
-
-        function showLinkDetail(d) {
-            const title = document.getElementById('detail-title');
-            const tag = document.getElementById('detail-tag');
-            const content = document.getElementById('detail-content');
-
-            title.innerText = "Connection Details";
-            tag.classList.add('hidden');
-
-            content.innerHTML = `
-            <div class="flex flex-col items-center justify-center p-8 bg-slate-800 rounded-xl border border-slate-700 space-y-6">
-                <div class="text-center w-full">
-                    <div class="text-xs font-bold text-slate-500 uppercase mb-2">Source</div>
-                    <div class="font-bold text-slate-200 text-lg px-4 py-2 bg-slate-900 rounded shadow-sm border border-slate-800">${d.source.name}</div>
-                </div>
-                <div class="material-symbols-outlined text-slate-500 text-3xl">arrow_downward</div>
-                <div class="text-center w-full">
-                    <div class="text-xs font-bold text-slate-500 uppercase mb-2">Target</div>
-                    <div class="font-bold text-slate-200 text-lg px-4 py-2 bg-slate-900 rounded shadow-sm border border-slate-800">${d.target.name}</div>
-                </div>
-            </div>
-        `;
-        }
 
         // Function to download the current HTML content
         function downloadCode() {
