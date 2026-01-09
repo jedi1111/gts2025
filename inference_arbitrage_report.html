@@ -37,7 +37,7 @@
                 function c(d) { this.g = (a += Math.random() + 1).toString(); if (d) { d = t(d); for (var e; !(e = d.next()).done;)e = e.value, this.set(e[0], e[1]) } } function g() { } function h(d) { var e = typeof d; return e === "object" && d !== null || e === "function" } function l(d) { if (!K(d, f)) { var e = new g; u(d, f, { value: e }) } } function m(d) { var e = Object[d]; e && (Object[d] = function (k) { if (k instanceof g) return k; Object.isExtensible(k) && l(k); return e(k) }) } if (function () {
                     if (!b || !Object.seal) return !1; try {
                         var d = Object.seal({}), e = Object.seal({}),
-                        k = new b([[d, 2], [e, 3]]); if (k.get(d) != 2 || k.get(e) != 3) return !1; k.delete(d); k.set(e, 4); return !k.has(d) && k.get(e) == 4
+                            k = new b([[d, 2], [e, 3]]); if (k.get(d) != 2 || k.get(e) != 3) return !1; k.delete(d); k.set(e, 4); return !k.has(d) && k.get(e) == 4
                     } catch (p) { return !1 }
                 }()) return b; var f = "$jscomp_hidden_" + Math.random(); m("freeze"); m("preventExtensions"); m("seal"); var a = 0; c.prototype.set = function (d, e) { if (!h(d)) throw Error("Invalid WeakMap key"); l(d); if (!K(d, f)) throw Error("WeakMap key fail: " + d); d[f][this.g] = e; return this }; c.prototype.get = function (d) { return h(d) && K(d, f) ? d[f][this.g] : void 0 }; c.prototype.has = function (d) {
                     return h(d) && K(d,
@@ -153,7 +153,7 @@
                 function b(l) { this.A = (g += Math.random() + 1).toString(); if (l) { l = t(l); for (var m; !(m = l.next()).done;)m = m.value, this.set(m[0], m[1]) } } function c() { } function d(l) { var m = typeof l; return m === "object" && l !== null || m === "function" } function e(l) { if (!Ga(l, f)) { var m = new c; ca(l, f, { value: m }) } } function k(l) { var m = Object[l]; m && (Object[l] = function (u) { if (u instanceof c) return u; Object.isExtensible(u) && e(u); return m(u) }) } if (function () {
                     if (!a || !Object.seal) return !1; try {
                         var l = Object.seal({}), m = Object.seal({}),
-                        u = new a([[l, 2], [m, 3]]); if (u.get(l) != 2 || u.get(m) != 3) return !1; u.delete(l); u.set(m, 4); return !u.has(l) && u.get(m) == 4
+                            u = new a([[l, 2], [m, 3]]); if (u.get(l) != 2 || u.get(m) != 3) return !1; u.delete(l); u.set(m, 4); return !u.has(l) && u.get(m) == 4
                     } catch (D) { return !1 }
                 }()) return a; var f = "$jscomp_hidden_" + Math.random(); k("freeze"); k("preventExtensions"); k("seal"); var g = 0; b.prototype.set = function (l, m) { if (!d(l)) throw Error("Invalid WeakMap key"); e(l); if (!Ga(l, f)) throw Error("WeakMap key fail: " + l); l[f][this.A] = m; return this }; b.prototype.get = function (l) { return d(l) && Ga(l, f) ? l[f][this.A] : void 0 }; b.prototype.has = function (l) {
                     return d(l) && Ga(l,
@@ -269,7 +269,7 @@
                             var g = f, l = !1; var m = g; var u = g.charAt(0); u != u.toLowerCase() && (l = !0, m = g.charAt(0).toLowerCase() + g.substring(1)); var D = Gd; for (u = 1; u <= m.length; ++u) { var F = D, I = m.substring(0, u); if (I.length == 0 ? F.sa() : !Dd(F, I)) break } m = u == 1 ? null : (m = D.get(m.substring(0, u - 1))) ? { Aa: g.substring(0, u - 1), value: g.substring(u - 1), Ga: l, attributes: m } : null; if (m) {
                                 g = []; l = []; u = !1; for (D = 0; D < m.attributes.types.length; D++) {
                                     F =
-                                    m.attributes.types[D]; var O = m.value; I = k; if (m.Ga && F == 1) for (var X = O.length; X < 12 && I < b.length - 1;)O += "-" + b[I + 1], X = O.length, ++I; else if (F == 2) for (; I < b.length - 1 && b[I + 1].match(/^[\d\.]/);)O += "-" + b[I + 1], ++I; X = m.attributes.A[D]; O = de(a, F)(m.Aa, O, c, d, X); if (O === null) { u = !0; k = I; break } else g.push(F), l.push(O)
+                                        m.attributes.types[D]; var O = m.value; I = k; if (m.Ga && F == 1) for (var X = O.length; X < 12 && I < b.length - 1;)O += "-" + b[I + 1], X = O.length, ++I; else if (F == 2) for (; I < b.length - 1 && b[I + 1].match(/^[\d\.]/);)O += "-" + b[I + 1], ++I; X = m.attributes.A[D]; O = de(a, F)(m.Aa, O, c, d, X); if (O === null) { u = !0; k = I; break } else g.push(F), l.push(O)
                                 } if (!u) for (m = 0; m < l.length; m++)D = g[m], O = l[m], ee(a, D)(f, O); e = e && u
                             } else e = !1
                         }
@@ -379,25 +379,25 @@
                     })
                 } function bf(h,
                     n) {
-                        var r, y, A, B, P, L, J, H, C, ma, ba, dc, Ya, Za, Kd, Ld, Md, Nd, fc; return w(function (Od) {
-                            try {
-                                r = f(n); y = D(r, IMG_SEARCH_REPLACE_MAP, wb); A = D(r, IMG_SEARCH_ATTRIBUTION_MAP, Pd); B = null; A && (B = sd(A)); if (!y) return console.debug("no image search found for key: ", r), b(h), Od.return(); P = t(y); L = P.next().value; J = P.next().value; H = L; C = J; ma = window.getComputedStyle(h); if (dc = (ba = h.parentElement) && ba.classList.contains("dyn-img-link-wrapper-di-script")) {
-                                    if (Ya = ba.querySelector(".dyn-img-link-di-script")) {
-                                        var Qd = md(C); Qd !== void 0 && (Ya.href =
-                                            Qd); Ya.title = "Image Source: " + C
-                                    } if ((Za = ba.querySelector(".dyn-img-attribution-button-di-script")) && B) { var $a = B, Ha = Za.cloneNode(!0); Za.parentNode ? Za.parentNode.replaceChild(Ha, Za) : console.debug("Cannot replace image attribution button."); rd($a, Ha) } else console.debug("Unable to update button event listener."); ba.style.borderRadius = ma.borderRadius; (Kd = la) == null || Kd.call(h, H)
+                    var r, y, A, B, P, L, J, H, C, ma, ba, dc, Ya, Za, Kd, Ld, Md, Nd, fc; return w(function (Od) {
+                        try {
+                            r = f(n); y = D(r, IMG_SEARCH_REPLACE_MAP, wb); A = D(r, IMG_SEARCH_ATTRIBUTION_MAP, Pd); B = null; A && (B = sd(A)); if (!y) return console.debug("no image search found for key: ", r), b(h), Od.return(); P = t(y); L = P.next().value; J = P.next().value; H = L; C = J; ma = window.getComputedStyle(h); if (dc = (ba = h.parentElement) && ba.classList.contains("dyn-img-link-wrapper-di-script")) {
+                                if (Ya = ba.querySelector(".dyn-img-link-di-script")) {
+                                    var Qd = md(C); Qd !== void 0 && (Ya.href =
+                                        Qd); Ya.title = "Image Source: " + C
+                                } if ((Za = ba.querySelector(".dyn-img-attribution-button-di-script")) && B) { var $a = B, Ha = Za.cloneNode(!0); Za.parentNode ? Za.parentNode.replaceChild(Ha, Za) : console.debug("Cannot replace image attribution button."); rd($a, Ha) } else console.debug("Unable to update button event listener."); ba.style.borderRadius = ma.borderRadius; (Kd = la) == null || Kd.call(h, H)
+                            } else {
+                                Date.now() < Rd + 500 ? ((Ld = la) == null || Ld.call(h, ec), Jd(h, H)) : (Md = la) == null || Md.call(h, H); if (B) {
+                                    Ha = B; var ab = document.createElement("button");
+                                    ab.className = "dyn-img-attribution-button-di-script"; ab.title = "Image Attribution"; rd(Ha, ab); var hc = document.createElement("span"); hc.className = "material-symbols-outlined"; hc.textContent = "open_in_full"; ab.appendChild(hc); var Sd = ab
                                 } else {
-                                    Date.now() < Rd + 500 ? ((Ld = la) == null || Ld.call(h, ec), Jd(h, H)) : (Md = la) == null || Md.call(h, H); if (B) {
-                                        Ha = B; var ab = document.createElement("button");
-                                        ab.className = "dyn-img-attribution-button-di-script"; ab.title = "Image Attribution"; rd(Ha, ab); var hc = document.createElement("span"); hc.className = "material-symbols-outlined"; hc.textContent = "open_in_full"; ab.appendChild(hc); var Sd = ab
-                                    } else {
-                                        var za = document.createElement("a"); za.className = "dyn-img-link-di-script"; za.target = "_blank"; za.rel = "noopener noreferrer"; var Td = md(C); Td !== void 0 && (za.href = Td); za.title = "Image Source: " + C; var ic = document.createElement("span"); ic.className = "google-symbols"; ic.textContent =
-                                            "link"; za.appendChild(ic); Sd = za
-                                    } Nd = Sd; if (B) { var Ud, Vd; if ((Ud = Rc(B, ad, 14)) == null) var Wd = void 0; else { if ((Vd = Rc(Ud, $c, 2)) == null) var Xd = void 0; else { var jc = jc === void 0 ? "" : jc; var Yd; Xd = (Yd = Uc(Vd, 1)) != null ? Yd : jc } Wd = Xd } if (Ha = Wd) { var kc = document.createElement("span"); kc.className = "dyn-img-inline-attribution-di-script"; kc.textContent = Ha; $a = kc } else $a = null } else $a = null; fc = $a; var cf = window.getComputedStyle(h), Ia = document.createElement("div"); Ia.className = "dyn-img-link-wrapper-di-script"; Ia.style.borderRadius =
-                                        cf.borderRadius; h.parentNode && (h.parentNode.insertBefore(Ia, h), Ia.appendChild(h), Ia.appendChild(Nd), fc && Ia.appendChild(fc)); df.observe(h); ef.observe(h, { attributes: !0, attributeFilter: ["style", "class"] })
-                                }
-                            } catch (ff) { console.debug("Error replacing search image src", ff) } Od.A = 0
-                        })
+                                    var za = document.createElement("a"); za.className = "dyn-img-link-di-script"; za.target = "_blank"; za.rel = "noopener noreferrer"; var Td = md(C); Td !== void 0 && (za.href = Td); za.title = "Image Source: " + C; var ic = document.createElement("span"); ic.className = "google-symbols"; ic.textContent =
+                                        "link"; za.appendChild(ic); Sd = za
+                                } Nd = Sd; if (B) { var Ud, Vd; if ((Ud = Rc(B, ad, 14)) == null) var Wd = void 0; else { if ((Vd = Rc(Ud, $c, 2)) == null) var Xd = void 0; else { var jc = jc === void 0 ? "" : jc; var Yd; Xd = (Yd = Uc(Vd, 1)) != null ? Yd : jc } Wd = Xd } if (Ha = Wd) { var kc = document.createElement("span"); kc.className = "dyn-img-inline-attribution-di-script"; kc.textContent = Ha; $a = kc } else $a = null } else $a = null; fc = $a; var cf = window.getComputedStyle(h), Ia = document.createElement("div"); Ia.className = "dyn-img-link-wrapper-di-script"; Ia.style.borderRadius =
+                                    cf.borderRadius; h.parentNode && (h.parentNode.insertBefore(Ia, h), Ia.appendChild(h), Ia.appendChild(Nd), fc && Ia.appendChild(fc)); df.observe(h); ef.observe(h, { attributes: !0, attributeFilter: ["style", "class"] })
+                            }
+                        } catch (ff) { console.debug("Error replacing search image src", ff) } Od.A = 0
+                    })
                 } function bb(h, n) {
                     n = n === void 0 ? !1 : n; var r; return w(function (y) {
                         r = n ? h.getAttribute("src") : h.getAttribute("go-data-src") || h.getAttribute("src"); if (!r) return y.return(); r = F(r); r = Id(r); r.startsWith("/gen?prompt=") ? (xb++, af(h, r)) : r.startsWith("/image?query=") &&
@@ -436,7 +436,7 @@
                 } function jf() { if (Aa && Aa.set) { var h = Aa.set; Object.defineProperty(HTMLImageElement.prototype, "src", { set: function (n) { h.call(this, n); bb(this, !0) }, get: Aa.get, enumerable: Aa.enumerable, configurable: Aa.configurable }) } } function Zd() {
                     return w(function (h) {
                         Rd =
-                        Date.now(); e(); document.querySelectorAll("img").forEach(function (n) { return w(function (r) { return v(r, bb(n), 0) }) }); MAY_HAVE_BACKGROUND_IMAGE && document.querySelectorAll("*").forEach(function (n) { return w(function (r) { return v(r, yb(n), 0) }) }); hf(); pd(); h.A = 0
+                            Date.now(); e(); document.querySelectorAll("img").forEach(function (n) { return w(function (r) { return v(r, bb(n), 0) }) }); MAY_HAVE_BACKGROUND_IMAGE && document.querySelectorAll("*").forEach(function (n) { return w(function (r) { return v(r, yb(n), 0) }) }); hf(); pd(); h.A = 0
                     })
                 } console.debug("PreprocessImages Version 1"); var Hd = a('\n    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">\n      \x3c!-- Wrapper group for opacity --\x3e\n      <g opacity="0.4">\n        <g id="icon" fill="none" stroke="#aaaaaa" stroke-width="5.25" stroke-linecap="round">\n          <circle cx="50" cy="45" r="19"></circle>\n          <line x1="37" y1="32" x2="63" y2="58"></line>\n        </g>\n        <g id="text">\n          <text x="50" y="80" font-family="Arial, sans-serif" font-size="9" fill="#aaaaaa" text-anchor="middle" font-weight="600" font-style="italic">No image</text>\n        </g>\n      </g>\n    </svg>'),
                     ec = a('\n<svg width="1024" height="1024" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">\n  <defs>\n    <linearGradient id="g" x1="-100%" y1="0" x2="0" y2="0">\n      <stop offset="0" stop-color="#b0b0b0"/>\n      <stop offset=".5" stop-color="#f0f0f0"/>\n      <stop offset="1" stop-color="#b0b0b0"/>\n\n      <animateTransform id="a" \n                        attributeName="gradientTransform" \n                        type="translate" \n                        from="0" to="2" \n                        dur="1s" begin="0s"/>\n      <animateTransform id="b" \n                        attributeName="gradientTransform" \n                        type="translate" \n                        from="0" to="2" \n                        dur="1.5s" begin="a.end"/>\n      <animateTransform attributeName="gradientTransform" \n                        type="translate" \n                        from="0" to="2" \n                        dur="2s" begin="b.end" \n                        repeatCount="indefinite"/>\n    </linearGradient>\n  </defs>\n  \n  <rect width="100" height="100" fill="url(#g)"/>\n</svg>'),
@@ -2047,6 +2047,7 @@
                 <span
                     class="bg-gradient-to-r from-emerald-400 via-white to-red-400 bg-clip-text text-transparent">Arbitrage</span>
             </h1>
+            <p class="text-sm text-gray-500 opacity-60 mt-4 mb-4 font-light">Created by CK Cheruvettolil</p>
 
             <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
                 By 2030, 75% of AI compute will be inference. Explore why the industry is defecting from general-purpose
@@ -2723,10 +2724,7 @@
     -->
 
 
-    <div
-        style="text-align: center; padding: 20px; font-family: sans-serif; color: #666; font-size: 12px; opacity: 0.7;">
-        Created by CK Cheruvettolil
-    </div>
+
 </body>
 
 </html>

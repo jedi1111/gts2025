@@ -38,7 +38,7 @@
                 function c(d) { this.g = (a += Math.random() + 1).toString(); if (d) { d = t(d); for (var e; !(e = d.next()).done;)e = e.value, this.set(e[0], e[1]) } } function g() { } function h(d) { var e = typeof d; return e === "object" && d !== null || e === "function" } function l(d) { if (!K(d, f)) { var e = new g; u(d, f, { value: e }) } } function m(d) { var e = Object[d]; e && (Object[d] = function (k) { if (k instanceof g) return k; Object.isExtensible(k) && l(k); return e(k) }) } if (function () {
                     if (!b || !Object.seal) return !1; try {
                         var d = Object.seal({}), e = Object.seal({}),
-                        k = new b([[d, 2], [e, 3]]); if (k.get(d) != 2 || k.get(e) != 3) return !1; k.delete(d); k.set(e, 4); return !k.has(d) && k.get(e) == 4
+                            k = new b([[d, 2], [e, 3]]); if (k.get(d) != 2 || k.get(e) != 3) return !1; k.delete(d); k.set(e, 4); return !k.has(d) && k.get(e) == 4
                     } catch (p) { return !1 }
                 }()) return b; var f = "$jscomp_hidden_" + Math.random(); m("freeze"); m("preventExtensions"); m("seal"); var a = 0; c.prototype.set = function (d, e) { if (!h(d)) throw Error("Invalid WeakMap key"); l(d); if (!K(d, f)) throw Error("WeakMap key fail: " + d); d[f][this.g] = e; return this }; c.prototype.get = function (d) { return h(d) && K(d, f) ? d[f][this.g] : void 0 }; c.prototype.has = function (d) {
                     return h(d) && K(d,
@@ -941,6 +941,7 @@
         class="bg-slate-900 border-b border-slate-800 px-6 py-3 flex items-center justify-between shadow-sm z-10 shrink-0">
         <div>
             <h1 class="text-xl font-bold text-white tracking-tight">AI Financing Structure</h1>
+            <p class="text-[10px] text-slate-400 opacity-60 leading-tight mt-0.5">Created by CK Cheruvettolil</p>
             <p class="text-xs text-slate-400">Global funding flows for AI capacity building</p>
         </div>
         <div class="hidden md:flex gap-3">
@@ -1468,8 +1469,8 @@
             title.innerText = d.name;
             tag.innerText = d.type;
             tag.className = `inline-block px-2 py-1 text-xs font-bold rounded uppercase tracking-wide mb-2 ${d.type === 'source' ? 'bg-green-900/30 text-green-400 border border-green-900' :
-                    d.type === 'instrument' ? 'bg-orange-900/30 text-orange-400 border border-orange-900' :
-                        'bg-blue-900/30 text-blue-400 border border-blue-900'
+                d.type === 'instrument' ? 'bg-orange-900/30 text-orange-400 border border-orange-900' :
+                    'bg-blue-900/30 text-blue-400 border border-blue-900'
                 }`;
             tag.classList.remove('hidden');
 
@@ -1558,10 +1559,7 @@
 
     </script>
 
-    <div
-        style="text-align: center; padding: 20px; font-family: sans-serif; color: #666; font-size: 12px; opacity: 0.7;">
-        Created by CK Cheruvettolil
-    </div>
+
 </body>
 
 </html>
